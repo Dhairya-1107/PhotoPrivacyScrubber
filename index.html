@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photo Privacy Scrubber</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header class="navbar">
     <div class="brand"><span class="brand-icon">⌾</span> Photo Privacy Scrubber</div>
@@ -48,9 +50,8 @@
           <p>or choose an image from your device</p>
           <label class="primary-btn file-btn">
             Choose photo
-            <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png,image/webp">
-          </label>
-          <p class="local-note">JPG, PNG or WebP • processed locally</p>
+            <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png,image/webp,image/heic,image/heif">
+            <p class="local-note">JPG, PNG or WebP • processed locally</p>
         </div>
 
         <div class="preview-panel hidden" id="previewPanel">
@@ -80,7 +81,8 @@
           <div>
             <p class="eyebrow">STEP 03</p>
             <h3>Create a cleaner copy</h3>
-            <p>We redraw the image through the browser Canvas API and export a new file without the original EXIF metadata.</p>
+            <p>We redraw the image through the browser Canvas API and export a new file without the original EXIF
+              metadata.</p>
           </div>
           <button class="primary-btn" id="scrubBtn">🛡 Scrub photo</button>
         </div>
@@ -104,7 +106,8 @@
             </div>
           </div>
           <a class="download-btn" id="downloadBtn" download="photo-scrubbed.jpg">Download safe photo ↓</a>
-          <p class="disclaimer">Verification shown here reflects the metadata categories detected by this browser-based demo. It is not a guarantee against every possible non-EXIF data channel.</p>
+          <p class="disclaimer">Verification shown here reflects the metadata categories detected by this browser-based
+            demo. It is not a guarantee against every possible non-EXIF data channel.</p>
         </div>
       </div>
     </section>
@@ -115,4 +118,5 @@
   <script src="https://cdn.jsdelivr.net/npm/exifreader@4.14.0/dist/exif-reader.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

@@ -90,16 +90,43 @@ async function scanMetadata(file) {
 }
 
 function findTag(tags, keys) {
-  for (const key of keys) {
-    if (tags?.[key]?.description != null) return tags[key].description;
-    if (tags?.[key]?.value != null) return tags[key].value;
+  const sections = [
+    tags?.gps,
+    tags?.exif,
+    tags?.xmp,
+    tags?.iptc,
+    tags?.composite,
+    tags
+  ];
+
+  for (const section of sections) {
+    if (!section) continue;
+
+    for (const key of keys) {
+      const tag = section[key];
+
+      if (!tag) continue;
+
+      if (tag.description !== undefined) {
+        return tag.description;
+      }
+
+      if (tag.computed !== undefined) {
+        return tag.computed;
+      }
+
+      if (tag.value !== undefined) {
+        return tag.value;
+      }
+    }
   }
+
   return null;
 }
 
 function renderMetadata(tags) {
-  const gpsLat = findTag(tags, ["GPSLatitude"]);
-  const gpsLon = findTag(tags, ["GPSLongitude"]);
+  const gpsLat = findTag(tags, ["Latitude", "GPSLatitude"]);
+  const gpsLon = findTag(tags, ["Longitude", "GPSLongitude"]);
   const gps = gpsLat != null && gpsLon != null ? `${gpsLat}, ${gpsLon}` : null;
 
   const device = findTag(tags, ["Model", "CameraModelName"]);

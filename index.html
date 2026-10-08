@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Privacy Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand"><span class="brand-icon">⌾</span> Photo Privacy Scrubber</div>
+    <div class="privacy-badge">🔒 Local processing</div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">PHOTO PRIVACY • EXIF AWARENESS</p>
+        <h1>Your photo may reveal <span>more than you think.</span></h1>
+        <p class="hero-text">
+          Scan hidden image metadata, understand the privacy risks, and create a cleaner copy before sharing.
+        </p>
+        <button class="primary-btn" id="startBtn">Scan a photo <span>→</span></button>
+        <p class="local-note">Your original image is processed in your browser.</p>
+      </div>
+      <div class="hero-card">
+        <div class="scan-ring"><span>⌁</span></div>
+        <div class="mini-card">
+          <span>Potential exposure</span>
+          <strong>GPS • Device • Time</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace hidden" id="workspace">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STEP 01</p>
+          <h2>Scan your photo</h2>
+        </div>
+        <button class="ghost-btn" id="resetBtn">Start over</button>
+      </div>
+
+      <div class="upload-grid">
+        <div class="upload-panel" id="dropZone">
+          <div class="upload-icon">↑</div>
+          <h3>Drop a photo here</h3>
+          <p>or choose an image from your device</p>
+          <label class="primary-btn file-btn">
+            Choose photo
+            <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png,image/webp">
+          </label>
+          <p class="local-note">JPG, PNG or WebP • processed locally</p>
+        </div>
+
+        <div class="preview-panel hidden" id="previewPanel">
+          <div class="panel-title">Selected photo</div>
+          <img id="previewImage" alt="Selected photo preview">
+          <div class="file-meta">
+            <span id="fileName">—</span>
+            <span id="fileSize">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="results hidden" id="results">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">STEP 02</p>
+            <h2>Privacy scan</h2>
+          </div>
+          <div class="score" id="scoreBox">
+            <span>Risk</span><strong id="scoreValue">0</strong><small id="scoreLabel">SAFE</small>
+          </div>
+        </div>
+
+        <div class="metadata-grid" id="metadataGrid"></div>
+
+        <div class="action-card">
+          <div>
+            <p class="eyebrow">STEP 03</p>
+            <h3>Create a cleaner copy</h3>
+            <p>We redraw the image through the browser Canvas API and export a new file without the original EXIF metadata.</p>
+          </div>
+          <button class="primary-btn" id="scrubBtn">🛡 Scrub photo</button>
+        </div>
+
+        <div class="verification hidden" id="verification">
+          <div class="verification-head">
+            <div>
+              <p class="eyebrow">STEP 04</p>
+              <h2>Scrub complete</h2>
+            </div>
+            <div class="clean-pill">✓ Cleaner copy created</div>
+          </div>
+          <div class="before-after">
+            <div>
+              <span>BEFORE</span>
+              <p id="beforeText">Metadata detected</p>
+            </div>
+            <div>
+              <span>AFTER</span>
+              <p id="afterText">Original EXIF is not carried into the Canvas export.</p>
+            </div>
+          </div>
+          <a class="download-btn" id="downloadBtn" download="photo-scrubbed.jpg">Download safe photo ↓</a>
+          <p class="disclaimer">Verification shown here reflects the metadata categories detected by this browser-based demo. It is not a guarantee against every possible non-EXIF data channel.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Photo Privacy Scrubber • Educational privacy-awareness project</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/exifreader@4.14.0/dist/exif-reader.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
